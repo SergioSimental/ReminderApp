@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ReminderApp</string>
+    <string name="enter_time">Enter time in minutes (click Set Timer)</string>
+</resources>
