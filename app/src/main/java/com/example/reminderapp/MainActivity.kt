@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         button_oneMin = findViewById(R.id.button_oneMinTimer)
         button_twoMin = findViewById(R.id.button_twoMinTimer)
-        button_timePicker = findViewById(R.id.button_TimePicker)
         button_setTimer = findViewById(R.id.button_userInputTimer)
+        button_timePicker = findViewById(R.id.button_TimePicker)
 
         button_oneMin.setOnClickListener(listener1)
         button_twoMin.setOnClickListener(listener2)
@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //TO DO Get Time Pick to work
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.M)
     val listener4 = View.OnClickListener{ view ->
@@ -139,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         var currentTime: Int = 0
         val hourInSeconds = 3600
         val minutesInSeconds = 60
+        val dayInSeconds = 86400
         val calendar = Calendar.getInstance()
         val currentHour = calendar.get(HOUR_OF_DAY)
         val currentMinute = calendar.get(MINUTE)
@@ -146,9 +146,14 @@ class MainActivity : AppCompatActivity() {
 
         currentTime = currentSecond + (currentMinute * minutesInSeconds) + (currentHour * hourInSeconds)
         timerInSeconds = (hours*hourInSeconds) + (minutes * minutesInSeconds)
-        setTimer = timerInSeconds - currentTime
 
+        if(timerInSeconds < currentTime){
+            setTimer = timerInSeconds + (dayInSeconds - currentTime)
+        }else {
+            setTimer = timerInSeconds - currentTime
+        }
         return setTimer
     }
+
 
 }
