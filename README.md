@@ -1,0 +1,2 @@
+# ReminderApp
+Android timer application 
